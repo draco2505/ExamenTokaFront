@@ -36,3 +36,6 @@
 <div *ngIf="ListaPersonas.length == 0" class="roe mt-5">
     <h5>No se encontraron personas fisicas</h5>
 </div>
+<div *ngIf="errorBack.length > 0" class="alert alert-danger">
+    {{ errorBack }}
+</div>

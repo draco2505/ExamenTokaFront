@@ -11,6 +11,7 @@ import { PersonaFisicaServiceService } from 'src/app/Services/persona-fisica-ser
 export class ListaPersonasFisicasComponent implements OnInit {
 
   ListaPersonas: PersonaFisica[] = [];
+  errorBack = "";
   constructor(private _personaService: PersonaFisicaServiceService) { }
 
   ngOnInit(): void {
@@ -23,7 +24,7 @@ export class ListaPersonasFisicasComponent implements OnInit {
       this.ListaPersonas = data;
       console.log(this.ListaPersonas);
     }, error => {
-      console.log(error);
+      this.errorBack = error;
     });
   }
 

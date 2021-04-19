@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PersonaFisica } from '../interfaces/PersonaFisica';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -29,5 +28,5 @@ export class PersonaFisicaServiceService {
   
   putPersonaFisica(idPersona : number, persona : PersonaFisica) : Observable<any>{
     return this.http.put(this.UrlApp+this.urlApi+ "PutPersonaFisicaSP/"+ idPersona, persona);
-  }
+  }  
 }

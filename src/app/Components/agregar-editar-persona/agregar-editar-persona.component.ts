@@ -1,4 +1,5 @@
 import { DatePipe, formatDate } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
@@ -15,7 +16,7 @@ export class AgregarEditarPersonaComponent implements OnInit {
   idPersonaFisica = 0;
   personaFisica: PersonaFisica | undefined
   agregarPersona:FormGroup;
-  
+  errorBack = "";
   constructor(private fb: FormBuilder,
               private _personaService : PersonaFisicaServiceService,
               private router :  Router,
@@ -48,7 +49,7 @@ export class AgregarEditarPersonaComponent implements OnInit {
           FechaNacimiento: formatDate(data.fechaNacimiento, 'dd/MM/yyyy', 'en')
         });
       }, error => {
-        console.log(error);
+       this.errorBack = error;
       });
       
     }
@@ -83,15 +84,14 @@ export class AgregarEditarPersonaComponent implements OnInit {
         apellidoPaterno: this.agregarPersona.get('ApellidoPaterno')?.value,
         apellidoMaterno: this.agregarPersona.get('ApellidoMaterno')?.value,
         rfc: this.agregarPersona.get('RFC')?.value,
-        fechaNacimiento: new Date(Number(fechaSplit[2]), Number(fechaSplit[1]) -1, Number(fechaSplit[0])),
+        fechaNacimiento: new Date(this.agregarPersona.get('FechaNacimiento')?.value),
+        // fechaNacimiento: new Date(Number(fechaSplit[2]), Number(fechaSplit[1]) -1, Number(fechaSplit[0])),
         usuarioAgrega: 1,
         activo: true
       };
-      console.log(this.agregarPersona.get('FechaNacimiento')?.value);
-      console.log(fechaSplit);
       this._personaService.putPersonaFisica(this.idPersonaFisica, persona).subscribe(data => {
         this.router.navigate(['/']);  
-      }, error => {
+      }, (error :  HttpErrorResponse) => {
         console.log(error);
       });
 

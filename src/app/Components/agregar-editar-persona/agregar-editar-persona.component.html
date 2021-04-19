@@ -51,3 +51,6 @@
         <button routerLink="/listado" class="btn btn-danger ">Cancelar</button>
     </div>
 </form>
+<div *ngIf="errorBack.length > 0" class="alert alert-danger">
+    {{ errorBack }}
+</div>
