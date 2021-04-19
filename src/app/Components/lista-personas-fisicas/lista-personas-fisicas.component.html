@@ -1,0 +1,38 @@
+<div class="row mt-3">
+    <div class="col-lg-6">
+        <h3>Listado de personas fisicas</h3>
+    </div>
+    <div class="col-lg 6">
+        <button class="btn btn-primary float-end" routerLink="/agregar">Agregar persona fisica</button>
+    </div>
+</div>
+<table class="table table-hover mt-3" *ngIf="ListaPersonas.length > 0">
+    <thead>
+        <tr>
+            <td>ID persona fisica</td>
+            <td>Nombre</td>
+            <td>Apellido paterno</td>
+            <td>Apellido materno</td>
+            <td>RFC</td>
+            <td>Fecha nacimiento</td>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody >
+        <tr *ngFor="let persona of ListaPersonas">
+            <td>{{ persona.idPersonaFisica }}</td>
+            <td>{{ persona.nombre }}</td>
+            <td>{{ persona.apellidoPaterno }}</td>
+            <td>{{ persona.apellidoMaterno }}</td>
+            <td>{{ persona.rfc }}</td>
+            <td>{{ persona.fechaNacimiento | date: 'dd/MM/yyyy'}}</td>
+            <td>
+                <button [routerLink]="['/editar', persona.idPersonaFisica ]" class="btn btn-primary btn-sm float-end"><i class="bi bi-pencil-fill"></i> Editar</button>
+                <button (click)="deletePersonaFisica(persona.idPersonaFisica)" class="btn btn-danger btn-sm "><i class="bi bi-pencil-fill"></i> Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="ListaPersonas.length == 0" class="roe mt-5">
+    <h5>No se encontraron personas fisicas</h5>
+</div>

@@ -1,0 +1,53 @@
+<h3>{{accion}} persona fisica</h3>
+<form [formGroup]="agregarPersona" (ngSubmit)="agregarEditar()" >
+    <div class="col-md-12">
+        <div class="col-md-12">            
+            <label for="Nombre">Nombre</label>
+            <input formControlName="Nombre" id="Nombre" type="text" class="form-control" maxlength="50" placeholder="Nombre de la persona fisica">
+            <span *ngIf="agregarPersona.get('Nombre')?.invalid && agregarPersona.get('Nombre')?.touched"  class="text-danger">
+                El <strong>nombre</strong> es requerido.
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="ApellidoPaterno">Apellido paterno</label>
+            <input formControlName="ApellidoPaterno" id="ApellidoPaterno" type="text" class="form-control" maxlength="50" placeholder="Apellido paterno de la persona fisica">
+            <span *ngIf="agregarPersona.get('ApellidoPaterno')?.invalid && agregarPersona.get('ApellidoPaterno')?.touched"  class="text-danger">
+                El <strong>aapellido paterno</strong> es requerido.
+            </span>
+        </div>
+        <div class="col-md-6">
+            <label for="ApellidoMaterno">Apellido materno</label>
+            <input formControlName="ApellidoMaterno" id="ApellidoMaterno" type="text" class="form-control" maxlength="50" placeholder="Apellido materno de la persona fisica">
+            <span *ngIf="agregarPersona.get('ApellidoMaterno')?.invalid && agregarPersona.get('ApellidoMaterno')?.touched"  class="text-danger">
+                El <strong>nombre</strong> es requerido.
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label for="RFC">RFC</label>
+            <input formControlName="RFC" id="RFC" type="text" class="form-control" maxlength="13" minlength="13" placeholder="XAXX010101000 ">
+            <span *ngIf="agregarPersona.get('RFC')?.invalid && agregarPersona.get('RFC')?.touched"  class="text-danger">
+                El <strong>nombre</strong> es requerido.
+            </span>
+        </div>
+        <div class="col-md-6">
+            <label for="FechaNacimiento">Fecha de nacimiento</label>
+            <div class="input-group date" data-provide="datepicker">
+                <input formControlName="FechaNacimiento" id="FechaNacimiento" type="text" class="form-control">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+            <span *ngIf="agregarPersona.get('FechaNacimiento')?.invalid && agregarPersona.get('FechaNacimiento')?.touched"  class="text-danger">
+                El <strong>nombre</strong> es requerido.
+            </span>
+        </div>    
+    </div>
+    <div class="float-end acciones">
+        <button class="btn btn-primary btn-guardar" [disabled]="agregarPersona.invalid">Guardar</button>
+        <button routerLink="/listado" class="btn btn-danger ">Cancelar</button>
+    </div>
+</form>
